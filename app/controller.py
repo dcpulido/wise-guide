@@ -6,13 +6,18 @@ from weather import WeatherHandler
 
 
 class Controller:
-    def __init__(self, general, tokens, client):
+    def __init__(self,
+                 general,
+                 tokens,
+                 client):
         self.conf = general
         self.tokens = tokens
         self.weather = WeatherHandler(tokens["weather_token"])
         self.members = client.get_all_members()
 
-    def parse_message(self, message, client):
+    def parse_message(self,
+                      message,
+                      client):
         print(client)
         msg = message.content
         author = message.author
@@ -36,7 +41,8 @@ class Controller:
                         toret.append(dict(name=m.display_name,
                                           status=m.status.value,
                                           server=m.server.name))
-            return json.dumps(toret, indent=2)
+            return json.dumps(toret,
+                              indent=2)
 
         if msg.startswith("!info"):
             try:
